@@ -1,0 +1,11 @@
+from sklearn.linear_model import LogisticRegression
+from models.modelAdvanced import ModelAdvanced
+
+class LogisticRegressionModel(ModelAdvanced):
+
+    def __init__(self, generatedData, features):
+        super().__init__(generatedData, features)
+        self.model=LogisticRegression(solver='liblinear', multi_class='auto', max_iter=10000)
+        self.param_grid = {
+            'penalty' : ['l1','l2']
+        }
