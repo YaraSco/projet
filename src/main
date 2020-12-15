@@ -1,0 +1,32 @@
+from generatedData import GeneratedData
+
+from models.logisticRegression import LogisticRegressionModel
+from models.adaBoost import AdaBoostModel
+from models.neuralNetwork import NeuralnetworkModel
+from models.svm import SvmModel
+from models.randomForest import RandomForestModel
+from models.generalDiscriminantAnalyse import GeneralDiscriminantAnalyseModel
+from models.perceptron import PerceptronModel
+
+def main():
+    """
+    To run this project:
+     * each model contains hyperparameters that you can change its values and see the optimized ones.
+     * for the number of iterations "k", you can modify it in modelAdvanced.py for all the models
+     * you can either run a list of models or run one by one 
+     * you can reduce the dimensionality by activating the variable "pca" to True
+     * you you can use the features on the dataset by activating "features" to True
+     * you can set the variable "verbose" to True for displaying the cross-validation
+    """
+    models = [LogisticRegressionModel, AdaBoostModel, NeuralnetworkModel, SvmModel,
+                    RandomForestModel, GeneralDiscriminantAnalyseModel]
+    generatedData = GeneratedData(pca=True)
+
+    for model_class in models:
+        model = model_class(generatedData, features=False)
+        model.train(verbose=True)
+        model.display_evaluation()
+
+
+if __name__ == "__main__":
+    main()
